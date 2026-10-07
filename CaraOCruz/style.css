@@ -1,0 +1,267 @@
+/* Сброс стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ФОН КАЗИНО: Темный зал с размытыми софитами и летящими золотыми искрами */
+body {
+    font-family: 'Arial Black', Impact, sans-serif;
+    background-color: #050505;
+    background-image:
+            radial-gradient(circle at 15% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 85% 80%, rgba(255, 0, 50, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(10, 30, 15, 0.8) 0%, #000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Анимация летящих искр (пылинок золота) на фоне */
+body::before {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0; right: 0; bottom: -100%;
+    background-image:
+            radial-gradient(circle, rgba(255,215,0,0.8) 1.5px, transparent 1.5px),
+            radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px);
+    background-size: 80px 80px, 120px 120px;
+    background-position: 0 0, 40px 40px;
+    animation: flyingSparks 15s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+}
+
+@keyframes flyingSparks {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50%); }
+}
+
+/* ИГРОВОЙ АВТОМАТ: Главный контейнер */
+.htmlContenidor {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #0f2e1b 0%, #040c07 100%);
+    padding: 4rem 3.5rem;
+    border-radius: 20px;
+    border: 4px solid #ffd700;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    min-width: 400px;
+    min-height: 450px;
+
+    /* Мощное золотое свечение автомата */
+    box-shadow:
+            0 0 40px rgba(255, 215, 0, 0.4),
+            inset 0 0 80px rgba(0, 0, 0, 0.9),
+            0 0 0 12px #111; /* Внешний черный корпус */
+
+    animation: machinePulse 3s infinite alternate;
+}
+
+/* Пульсация свечения самого автомата */
+@keyframes machinePulse {
+    0% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 80px rgba(0,0,0,0.9), 0 0 0 12px #111; }
+    100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), inset 0 0 80px rgba(0,0,0,0.9), 0 0 0 12px #111; }
+}
+
+/* Декоративная рамка из "бегущих огней" внутри */
+.htmlContenidor::after {
+    content: '';
+    position: absolute;
+    inset: 15px;
+    border: 2px dashed #ffea00;
+    border-radius: 10px;
+    pointer-events: none;
+    opacity: 0.6;
+    animation: marqueeLights 10s linear infinite;
+}
+
+@keyframes marqueeLights {
+    0% { border-dashoffset: 0; }
+    100% { border-dashoffset: 100px; }
+}
+
+/* ОБЩИЕ СТИЛИ ДЛЯ ИНПУТА И СЕЛЕКТА (ПОЛЯ СТАВОК) */
+.ladoSelection,
+.addMoneyInput {
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px solid #b38728;
+    color: #ffd700;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    outline: none;
+    width: 250px;
+    z-index: 2;
+
+    box-shadow:
+            inset 0 0 15px rgba(255, 215, 0, 0.1),
+            0 8px 15px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 5px rgba(0,0,0,1);
+    transition: all 0.3s ease;
+}
+
+.ladoSelection:focus,
+.addMoneyInput:focus,
+.ladoSelection:hover,
+.addMoneyInput:hover {
+    border-color: #ffea00;
+    box-shadow:
+            inset 0 0 20px rgba(255, 215, 0, 0.4),
+            0 0 25px rgba(255, 215, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* СПЕЦИФИЧНЫЕ СТИЛИ ДЛЯ ВЫПАДАЮЩЕГО СПИСКА */
+.ladoSelection {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image:
+            linear-gradient(45deg, transparent 50%, #ffd700 50%),
+            linear-gradient(135deg, #ffd700 50%, transparent 50%);
+    background-position:
+            calc(100% - 25px) center,
+            calc(100% - 15px) center;
+    background-size: 10px 10px, 10px 10px;
+    background-repeat: no-repeat;
+}
+
+.ladoSelection option {
+    background: #111;
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+/* СПЕЦИФИЧНЫЕ СТИЛИ ДЛЯ ПОЛЯ ВВОДА ДЕНЕГ */
+.addMoneyInput::-webkit-outer-spin-button,
+.addMoneyInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.addMoneyInput[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* КНОПКА "SPIN": Мигает и манит нажать */
+button {
+    position: relative;
+    background: linear-gradient(180deg, #ff1a1a 0%, #800000 100%);
+    color: #ffffff;
+    border: 3px solid #ffea00;
+    padding: 18px 50px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.9);
+    z-index: 2;
+
+    box-shadow:
+            0 10px 25px rgba(255, 0, 0, 0.5),
+            inset 0 6px 10px rgba(255, 150, 150, 0.6),
+            inset 0 -6px 10px rgba(0, 0, 0, 0.6);
+
+    transition: all 0.1s ease;
+    animation: buttonThrob 1.5s infinite alternate;
+}
+
+@keyframes buttonThrob {
+    0% { filter: brightness(1); transform: scale(1); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4), inset 0 6px 10px rgba(255, 150, 150, 0.6); }
+    100% { filter: brightness(1.2); transform: scale(1.02); box-shadow: 0 0 45px rgba(255, 0, 0, 0.9), inset 0 6px 10px rgba(255, 150, 150, 0.6); }
+}
+
+button:active {
+    transform: scale(0.95) translateY(5px);
+    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.8);
+    animation: none;
+}
+
+/* МОНЕТКА: Огромная, золотая, сверкающая */
+.resultadoMoneda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 220px;
+    z-index: 2;
+
+    background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    background-size: 200% 200%;
+
+    border: 8px solid #ffe55c;
+    border-radius: 50%;
+
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #4a2f00;
+
+    text-shadow:
+            2px 2px 0px #fcf6ba,
+            -1px -1px 0px #8a5a00,
+            0 5px 10px rgba(0,0,0,0.7);
+
+    box-shadow:
+            inset 0 0 30px rgba(255, 255, 255, 0.9),
+            0 15px 35px rgba(0, 0, 0, 0.8),
+            0 0 60px rgba(255, 215, 0, 0.8);
+
+    animation:
+            epicCoinDrop 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+            shimmerGold 3s linear infinite;
+}
+
+@keyframes shimmerGold {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes epicCoinDrop {
+    0% {
+        transform: translateY(-400px) rotateY(0deg) scale(0.1);
+        opacity: 0;
+        filter: blur(10px) brightness(3);
+    }
+    40% {
+        transform: translateY(30px) rotateY(1080deg) scale(1.3);
+        filter: blur(0px) brightness(2) drop-shadow(0 0 100px #fff);
+    }
+    100% {
+        transform: translateY(0) rotateY(1800deg) scale(1);
+        opacity: 1;
+        filter: brightness(1) drop-shadow(0 0 60px #ffd700);
+    }
+}
+
+/* СТИЛИ ДЛЯ ТЕКСТА ВЫИГРЫША (h2) */
+.resultadoDinero {
+    font-size: 2.2rem;
+    color: #00ff41;
+    text-transform: uppercase;
+    text-shadow:
+            0 0 10px rgba(0, 255, 65, 0.5),
+            0 0 20px rgba(0, 255, 65, 0.3),
+            2px 2px 0px #000;
+    z-index: 2;
+    animation: pulseWin 1s infinite alternate;
+}
+
+@keyframes pulseWin {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.1); filter: brightness(1.3); }
+}
