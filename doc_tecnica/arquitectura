@@ -1,0 +1,71 @@
+# 01 · Arquitectura
+
+## Stack
+
+| Capa | Tecnología |
+|------|------------|
+| Servidor | Apache (XAMPP / Laragon) |
+| Backend | PHP 8.x, sin framework |
+| Acceso a datos | PDO con sentencias preparadas |
+| Base de datos | MySQL 8 |
+| Frontend | HTML5, CSS3, JavaScript / jQuery |
+
+## Estructura de carpetas
+
+```
+casino/
+├── index.php                 # Redirige a login o a landing según la sesión
+├── login.php                 # Formulario + procesamiento del login
+├── logout.php                # Destruye la sesión
+├── landing.php               # Bienvenida, saldo y menú de juegos
+│
+├── includes/
+│   ├── config.php            # Constantes de conexión (NO subir a Git con datos reales)
+│   ├── db.php                # Función conectar(): devuelve un PDO
+│   ├── auth.php              # requiere_login(), requiere_admin()
+│   └── saldo.php             # obtener_saldo(), aplicar_apuesta()
+│
+├── admin/
+│   ├── index.php             # Listado de usuarios
+│   ├── crear.php             # Alta de usuario
+│   ├── editar.php            # Edición (nombre, rol, saldo, activo, contraseña)
+│   └── borrar.php            # Baja (POST + confirmación)
+│
+├── juegos/
+│   ├── cara_cruz.php
+│   ├── ruleta.php
+│   ├── ppt.php               # Piedra, papel o tijeras
+│   ├── tragaperras.php
+│   └── api/jugar.php         # Endpoint común: resuelve la jugada y actualiza saldo
+│
+├── assets/
+│   ├── css/estilos.css
+│   ├── js/                   # Un .js por juego
+│   └── img/
+│
+└── documentacion/            # Esta documentación
+```
+
+## Flujo general
+
+```
+[index.php] ──¿sesión?──no──▶ [login.php] ──credenciales OK──▶ crea $_SESSION
+     │                                                              │
+     sí                                                             ▼
+     └─────────────────────────────────────────────────────▶ [landing.php]
+                                                                    │
+                    ┌───────────────┬───────────────┬───────────────┤
+                    ▼               ▼               ▼               ▼
+               cara_cruz.php    ruleta.php       ppt.php      tragaperras.php
+                    └───────────────┴──── AJAX ─────┴───────────────┘
+                                         ▼
+                                 juegos/api/jugar.php  ──▶ UPDATE saldo (transacción)
+
+Si $_SESSION['rol'] == 'admin' ──▶ enlace visible a [admin/index.php]
+```
+
+## Principios de diseño
+
+- El JavaScript decide el resultado de cada partida; nunca envía "he ganado X".
+- El saldo se lee siempre de la BD, no de la sesión, para que esté actualizado tras cada jugada o cambio desde el admin.
+- **Un único punto de acceso a BD** (`includes/db.php`) y un único punto de control de acceso (`includes/auth.php`).
