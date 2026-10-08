@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Metadatos del documento y recursos visuales propios del juego. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10241e">
+  <meta name="description" content="Una mesa de blackjack lista para jugar.">
+  <title>Blackjack | La Mesa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blackjack.css">
+</head>
+<body>
+  <!-- Contenedor raíz: permite integrar la mesa sin mezclar su contenido con otras páginas. -->
+  <div class="blackjack-app">
+    <div class="page-shell">
+    <!-- Cabecera visual del minijuego y navegación interna de la página. -->
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="La Mesa, inicio">
+        <span class="brand-mark" aria-hidden="true">♠</span>
+        <span>LA <strong>MESA</strong></span>
+      </a>
+
+      <nav class="header-nav" aria-label="Navegación principal">
+        <a class="nav-link active" href="#mesa">Mesa</a>
+        <a class="nav-link" href="#reglas">Reglas</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>MESA ABIERTA</span>
+      </div>
+    </header>
+
+    <main id="mesa">
+      <!-- Título e introducción de la mesa. -->
+      <section class="game-heading" aria-labelledby="game-title">
+        <div class="eyebrow"><span></span> BLACKJACK CLÁSICO <span></span></div>
+        <h1 id="game-title">La suerte está <em>en tus manos.</em></h1>
+        <p>La mesa está lista. ¿Te animas a jugar?</p>
+      </section>
+
+      <!-- Zona de juego: el JavaScript inserta las imágenes de las cartas en cada mano. -->
+      <section class="table" aria-label="Mesa de blackjack">
+        <div class="table-inner">
+          <div class="table-topline">
+            <div class="shoe-label">
+              <span class="shoe-icon" aria-hidden="true">▤</span>
+              <span>MAZO <strong>52</strong></span>
+            </div>
+            <div class="round-label"><span class="round-dot"></span> RONDA <strong>01</strong></div>
+            <div class="table-limit">APUESTA MÍN. <strong>&gt; 5</strong></div>
+          </div>
+
+          <section class="hand dealer-hand" aria-labelledby="dealer-title">
+            <div class="hand-heading">
+              <div>
+                <h2 id="dealer-title">Crupier</h2>
+                <span class="hand-caption">LA CASA</span>
+              </div>
+              <span class="score-badge" id="dealer-score">—</span>
+            </div>
+            <div class="cards dealer-cards" id="dealer-cards" aria-label="Cartas del crupier">
+            </div>
+          </section>
+
+          <div class="table-center" aria-hidden="true">
+            <span class="center-rule"></span>
+            <span class="center-chip">♣</span>
+            <span class="center-rule"></span>
+          </div>
+
+          <section class="hand player-hand" aria-labelledby="player-title">
+            <div class="hand-heading">
+              <div>
+                <h2 id="player-title">Tu mano</h2>
+                <span class="hand-caption">JUGADOR</span>
+              </div>
+              <span class="score-badge" id="player-score">—</span>
+            </div>
+            <div class="cards player-cards" id="player-cards" aria-label="Tus cartas">
+            </div>
+          </section>
+
+          <div class="table-footer">
+            <span><span class="footer-sparkle">✦</span> El objetivo es llegar a 21 sin pasarse</span>
+            <span class="deck-count">♠ &nbsp;♣ &nbsp;♥ &nbsp;♦</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Campo de apuesta, botón para iniciar y controles que aparecen durante el turno. -->
+      <section class="controls" aria-label="Controles de la partida">
+        <div class="bet-control">
+          <span class="control-label">TU APUESTA</span>
+          <label class="bet-amount" for="bet-amount">
+            <span class="currency">$</span>
+            <input id="bet-amount" type="number" min="5.01" step="0.01" inputmode="decimal" value="25.00" aria-label="Importe de la apuesta" aria-describedby="bet-hint">
+          </label>
+          <span class="bet-hint" id="bet-hint">Mayor que $5; admite hasta dos decimales</span>
+        </div>
+
+        <div class="game-actions">
+          <button class="deal-button" id="deal-button" type="button">
+          <span class="deal-icon" aria-hidden="true">♠</span>
+          <span>Repartir</span>
+          <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+          <div class="turn-buttons" id="turn-buttons" hidden>
+            <button class="turn-button hit-button" id="hit-button" type="button">Hit <span aria-hidden="true">＋</span></button>
+            <button class="turn-button stand-button" id="stand-button" type="button">Plantarse <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+
+        <div class="balance">
+          <span class="control-label">TU SALDO</span>
+          <span class="balance-amount" id="balance-amount"><span>$</span> <span id="balance-whole">1.250</span><span class="balance-cents" id="balance-cents">,00</span></span>
+          <span class="balance-note"><span></span> Saldo de juego</span>
+        </div>
+      </section>
+
+      <!-- Estado accesible de la partida y aviso de que el saldo es solo demostrativo. -->
+      <p class="table-note" id="game-message" role="status" aria-live="polite">Demostración local: introduce tu apuesta y pulsa Repartir para empezar.</p>
+      <p class="demo-disclaimer">El saldo y los resultados son simulados; esta demostración no está conectada a una cuenta ni a la base de datos del sitio.</p>
+
+      <!-- Resumen breve de las reglas mostrado bajo los controles. -->
+      <section class="rules" id="reglas" aria-label="Resumen de las reglas">
+        <div class="rule-item"><span class="rule-number">01</span><span>Acércate a 21</span></div>
+        <span class="rule-divider" aria-hidden="true"></span>
+        <div class="rule-item"><span class="rule-number">02</span><span>Sin pasarte</span></div>
+        <span class="rule-divider" aria-hidden="true"></span>
+        <div class="rule-item"><span class="rule-number">03</span><span>Vence al crupier</span></div>
+      </section>
+    </main>
+
+    <!-- Pie de página de la maqueta del juego. -->
+    <footer class="site-footer">
+      <span>© 2025 LA MESA</span>
+      <span>HECHO PARA DISFRUTAR <span class="footer-heart">♥</span></span>
+    </footer>
+    </div>
+  </div>
+  <!-- defer carga el juego después de analizar el HTML, cuando sus elementos ya existen. -->
+  <script src="blackjack.js" defer></script>
+</body>
+</html>

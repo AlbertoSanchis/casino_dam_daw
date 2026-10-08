@@ -1,0 +1,904 @@
+@scope (.blackjack-app) {
+  /* Variables, tipografía y preferencias visuales limitadas a la mesa de blackjack. */
+  :scope {
+  color-scheme: dark;
+  --background: #101815;
+  --surface: #17231e;
+  --felt: #174b3a;
+  --felt-light: #1b5844;
+  --gold: #d5b36c;
+  --gold-light: #f0d99e;
+  --cream: #f2eee4;
+  --muted: #9ba69e;
+  --line: rgba(239, 220, 171, 0.16);
+  font-family: "DM Sans", sans-serif;
+  background: var(--background);
+  color: var(--cream);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    min-width: 320px;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 50% 34%, rgba(32, 66, 51, 0.2), transparent 48%),
+      var(--background);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  button,
+  a {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+@scope (.blackjack-app) {
+/* Cabecera, logotipo y enlaces de navegación. */
+.page-shell {
+  width: min(100% - 64px, 1160px);
+  margin: 0 auto;
+}
+
+.site-header {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(242, 238, 228, 0.08);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.brand strong {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.brand-mark {
+  color: var(--gold);
+  font-size: 23px;
+}
+
+.header-nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.nav-link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #87928a;
+  font-size: 12px;
+  transition: color 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cream);
+}
+
+.nav-link.active {
+  position: relative;
+}
+
+.nav-link.active::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--gold);
+  content: "";
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #b1b9b2;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.status-dot,
+.round-dot,
+.balance-note span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #78b98a;
+  box-shadow: 0 0 10px rgba(120, 185, 138, 0.5);
+}
+
+.game-heading {
+  padding: 46px 0 30px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+}
+
+.eyebrow span {
+  width: 22px;
+  height: 1px;
+  background: rgba(213, 179, 108, 0.55);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-top: 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(32px, 4.2vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+h1 em {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.game-heading p {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Superficie de fieltro, borde y elementos decorativos de la mesa. */
+.table {
+  position: relative;
+  padding: 22px 42px 19px;
+  overflow: hidden;
+  border: 1px solid rgba(225, 197, 132, 0.48);
+  border-radius: 260px 260px 30px 30px;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(43, 115, 82, 0.38), transparent 63%),
+    linear-gradient(145deg, #1c5c44, #164734 63%, #123d2e);
+  box-shadow:
+    0 0 0 7px rgba(213, 179, 108, 0.045),
+    0 18px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.table::before {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(239, 220, 171, 0.15);
+  border-radius: 250px 250px 22px 22px;
+  content: "";
+  pointer-events: none;
+}
+
+.table-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.table-topline,
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-topline {
+  max-width: 360px;
+  height: 34px;
+  margin: 10px auto 0;
+  color: rgba(240, 237, 223, 0.67);
+  font-size: 9px;
+  letter-spacing: 0.11em;
+}
+
+.table-topline strong {
+  margin-left: 4px;
+  color: #f1e8d0;
+  font-weight: 600;
+}
+
+.shoe-label,
+.round-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.shoe-icon {
+  color: var(--gold-light);
+  font-size: 15px;
+}
+
+.round-dot {
+  width: 5px;
+  height: 5px;
+}
+
+.hand {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+  align-items: center;
+  min-height: 144px;
+  padding: 13px 7% 7px;
+}
+
+.hand-heading h2 {
+  color: var(--cream);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.hand-caption {
+  display: block;
+  margin-top: 5px;
+  color: rgba(238, 232, 214, 0.52);
+  font-size: 8px;
+  letter-spacing: 0.17em;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  margin-top: 11px;
+  border: 1px solid rgba(240, 217, 158, 0.34);
+  border-radius: 50%;
+  color: var(--gold-light);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  gap: 12px;
+  min-height: 122px;
+}
+
+/* Tamaño, aspecto y alternativa de presentación de las cartas. */
+.card-placeholder {
+  width: 76px;
+  height: 108px;
+  flex: 0 0 auto;
+  border-radius: 7px;
+}
+
+.playing-card {
+  display: block;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #f8f7f1;
+  box-shadow: 0 5px 12px rgba(8, 28, 20, 0.26);
+  object-fit: fill;
+}
+
+.playing-card.card-back {
+  padding: 0;
+  border: 1px solid rgba(240, 217, 158, 0.76);
+  transform: rotate(-4deg);
+}
+
+.card-error {
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  color: #4a332b;
+  font-size: 10px;
+  text-align: center;
+}
+
+.card-back {
+  display: grid;
+  padding: 6px;
+  border: 1px solid rgba(240, 217, 158, 0.76);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 5px, rgba(239, 220, 171, 0.1) 5px 6px),
+    #253d35;
+  box-shadow: 0 5px 12px rgba(8, 28, 20, 0.26);
+  transform: rotate(-4deg);
+}
+
+.card-back-inner {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(240, 217, 158, 0.5);
+  border-radius: 3px;
+  color: var(--gold-light);
+  font-size: 35px;
+}
+
+.waiting-card {
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(238, 232, 214, 0.36);
+  background: rgba(8, 39, 28, 0.12);
+}
+
+.card-plus {
+  color: rgba(238, 232, 214, 0.44);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.table-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  height: 23px;
+  opacity: 0.74;
+}
+
+.center-rule {
+  width: min(24%, 160px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 208, 148, 0.6));
+}
+
+.center-rule:last-child {
+  transform: rotate(180deg);
+}
+
+.center-chip {
+  color: rgba(240, 217, 158, 0.8);
+  font-size: 12px;
+}
+
+.player-hand {
+  min-height: 142px;
+  padding-top: 7px;
+  padding-bottom: 11px;
+}
+
+.table-footer {
+  min-height: 32px;
+  padding: 0 8%;
+  border-top: 1px solid rgba(239, 220, 171, 0.14);
+  color: rgba(238, 232, 214, 0.65);
+  font-size: 9px;
+}
+
+.footer-sparkle {
+  margin-right: 5px;
+  color: var(--gold-light);
+}
+
+.deck-count {
+  color: rgba(240, 217, 158, 0.7);
+  letter-spacing: 0.1em;
+}
+
+/* Apuesta, botones de turno, saldo y mensajes de estado/resultado. */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 28px;
+  max-width: 680px;
+  margin: 28px auto 0;
+}
+
+.bet-control,
+.balance {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.bet-control {
+  grid-template-columns: 1fr;
+}
+
+.control-label {
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+  color: #929d95;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.17em;
+}
+
+.bet-amount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cream);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.bet-amount input {
+  width: 100px;
+  padding: 5px 8px;
+  border: 1px solid rgba(240, 217, 158, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--cream);
+  font: inherit;
+  letter-spacing: inherit;
+  appearance: textfield;
+}
+
+.bet-amount input:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+.bet-amount input::-webkit-inner-spin-button,
+.bet-amount input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.currency,
+.bet-unit,
+.balance-amount > span:first-child,
+.balance-cents {
+  color: var(--gold);
+}
+
+.bet-unit,
+.balance-cents {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.bet-hint {
+  margin-top: 4px;
+  color: #929d95;
+  font-size: 9px;
+}
+
+.deal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 194px;
+  height: 53px;
+  padding: 0 20px;
+  border: 1px solid #e9cf91;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #e8d199, #cfad67);
+  box-shadow: 0 5px 18px rgba(193, 155, 79, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  color: #1c241d;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.game-actions {
+  display: grid;
+  justify-items: center;
+}
+
+.turn-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.turn-buttons[hidden] {
+  display: none;
+}
+
+.turn-button {
+  min-width: 112px;
+  height: 53px;
+  padding: 0 16px;
+  border: 1px solid rgba(240, 217, 158, 0.56);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.turn-button span {
+  margin-left: 6px;
+}
+
+.turn-button:hover {
+  border-color: var(--gold-light);
+  background: rgba(213, 179, 108, 0.13);
+}
+
+.hit-button {
+  background: rgba(213, 179, 108, 0.12);
+}
+
+.stand-button {
+  border-color: rgba(242, 238, 228, 0.26);
+  color: var(--cream);
+}
+
+.deal-button:disabled,
+.turn-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.deal-button:disabled:hover {
+  filter: none;
+  transform: none;
+}
+
+.deal-button:hover {
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
+
+.deal-button[hidden] {
+  display: none;
+}
+
+.deal-icon {
+  font-size: 16px;
+}
+
+.button-arrow {
+  margin-left: 5px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.balance {
+  justify-self: end;
+  grid-template-columns: auto;
+  text-align: right;
+}
+
+.balance-amount {
+  color: var(--cream);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.balance-note {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+  color: #929d95;
+  font-size: 9px;
+}
+
+.balance-note span {
+  width: 5px;
+  height: 5px;
+}
+
+.table-note {
+  margin-top: 17px;
+  min-height: 14px;
+  color: #747f77;
+  font-size: 9px;
+  text-align: center;
+}
+
+.demo-disclaimer {
+  margin-top: 8px;
+  color: #747f77;
+  font-size: 9px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Los resultados se distinguen visualmente según gane, pierda o empate. */
+.table-note.result-win {
+  padding: 11px 14px;
+  border: 1px solid rgba(169, 210, 168, 0.28);
+  border-radius: 5px;
+  background: rgba(65, 112, 71, 0.16);
+  color: #a9d2a8;
+  font-size: clamp(16px, 2.4vw, 20px);
+  font-weight: 700;
+}
+
+.table-note.result-loss {
+  padding: 11px 14px;
+  border: 1px solid rgba(227, 164, 154, 0.28);
+  border-radius: 5px;
+  background: rgba(126, 57, 51, 0.17);
+  color: #e3a49a;
+  font-size: clamp(16px, 2.4vw, 20px);
+  font-weight: 700;
+}
+
+.table-note.result-draw {
+  padding: 11px 14px;
+  border: 1px solid rgba(240, 217, 158, 0.28);
+  border-radius: 5px;
+  background: rgba(116, 94, 46, 0.15);
+  color: var(--gold-light);
+  font-size: clamp(16px, 2.4vw, 20px);
+  font-weight: 700;
+}
+
+/* Reglas resumidas y pie visual del minijuego. */
+.rules {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 27px;
+  margin: 34px 0 37px;
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #a5aea6;
+  font-size: 10px;
+}
+
+.rule-number {
+  color: var(--gold);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.rule-divider {
+  width: 1px;
+  height: 15px;
+  background: rgba(242, 238, 228, 0.14);
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  border-top: 1px solid rgba(242, 238, 228, 0.08);
+  color: #78837b;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.footer-heart {
+  margin-left: 4px;
+  color: #c88e76;
+}
+
+/* Ajustes de distribución para pantallas pequeñas. */
+@media (max-width: 700px) {
+  .page-shell {
+    width: min(100% - 32px, 560px);
+  }
+
+  .site-header {
+    height: 68px;
+  }
+
+  .header-nav {
+    gap: 21px;
+  }
+
+  .header-status {
+    font-size: 0;
+  }
+
+  .game-heading {
+    padding: 38px 0 26px;
+  }
+
+  .table {
+    padding: 17px 20px 14px;
+    border-radius: 180px 180px 24px 24px;
+  }
+
+  .table::before {
+    inset: 9px;
+    border-radius: 172px 172px 17px 17px;
+  }
+
+  .table-topline {
+    max-width: 290px;
+  }
+
+  .hand {
+    grid-template-columns: 83px 1fr;
+    min-height: 130px;
+    padding-right: 2%;
+    padding-left: 3%;
+  }
+
+  .card-placeholder {
+    width: 64px;
+    height: 92px;
+  }
+
+  .cards {
+    min-height: 105px;
+  }
+
+  .table-footer {
+    padding: 0 3%;
+    font-size: 8px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 14px;
+    margin-top: 25px;
+  }
+
+  .deal-button {
+    grid-row: auto;
+    grid-column: 1 / -1;
+    justify-self: center;
+    min-width: min(100%, 300px);
+  }
+
+  .game-actions {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+  }
+
+  .game-actions .deal-button {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .balance {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .rules {
+    gap: 14px;
+    margin: 28px 0;
+  }
+
+  .rule-item {
+    gap: 5px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-shell {
+    width: calc(100% - 24px);
+  }
+
+  .brand {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .brand-mark {
+    font-size: 20px;
+  }
+
+  .header-nav {
+    gap: 14px;
+  }
+
+  .nav-link {
+    font-size: 11px;
+  }
+
+  .table {
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .table-topline {
+    max-width: 255px;
+    font-size: 8px;
+  }
+
+  .table-topline strong {
+    margin-left: 2px;
+  }
+
+  .hand {
+    grid-template-columns: 72px 1fr;
+    padding-left: 2%;
+  }
+
+  .hand-heading h2 {
+    font-size: 16px;
+  }
+
+  .cards {
+    gap: 8px;
+  }
+
+  .card-placeholder {
+    width: 57px;
+    height: 82px;
+  }
+
+  .table-footer {
+    font-size: 7px;
+  }
+
+  .deck-count {
+    letter-spacing: 0;
+  }
+
+  .rules {
+    gap: 9px;
+  }
+
+  .rule-item {
+    font-size: 8px;
+  }
+
+  .rule-divider {
+    height: 12px;
+  }
+}
+
+/* Reduce las transiciones cuando el usuario solicita movimiento reducido. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+}
