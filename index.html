@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pares O Nones</title>
+  </head>
+  <body>
+    <header>
+      <h1>Pares O Nones</h1>
+      <h2 id="sueldo">Balance:</h2>
+      <h2 id="apostado" style="display: none"></h2>
+    </header>
+    <main>
+      <form id="Apuestas">
+        <div id="contenedorApuesta">
+          <label for="">Cantidad a apostar</label>
+          <input type="number" name="" id="apuesta" />
+          <button id="allIn">ALL IN LET IT RIDE</button>
+          <input type="submit" id="apostar" value="apostar" />
+        </div>
+        <div id="contenedorApostado" style="display: none">
+          <h2 id="h2contenedorApostado">Cantidad Apostada:</h2>
+        </div>
+      </form>
+      <section id="juego">
+        <div id="typoElegir">
+          <h2>Elige</h2>
+          <form action="">
+            <select name="" id="tipo">
+              <option value="pares">Pares</option>
+              <option value="nones">Nones</option>
+            </select>
+            <input type="submit" name="" id="enviarTipo" />
+          </form>
+        </div>
+        <div id="typoElegido" style="display: none">
+          <h2 id="h2TypoElegido">Typo Elegido:</h2>
+        </div>
+        <h2>Introduce numero del 0 al 5</h2>
+        <form id="formJuego">
+          <input type="number" value="" min="0" max="5" id="numeroElegido" />
+          <input type="submit" id="JuegoEmpezar" value="Empezar Juego" />
+        </form>
+        <article>
+          <h3 id="resultado">Resultado</h3>
+          <p id="tuNumero">Tu Numero:</p>
+          <p id="numeroMaquina">Numero Casino:</p>
+        </article>
+        <button id="jugarNuevo">Jugar de Nuevo</button>
+      </section>
+      <button>Salir</button>
+      <form action="">
+        <label for="">Añadir Mandanga</label>
+        <input type="number" id="inputBalance" />
+        <button id="DarBalance">Let it RIDE</button>
+      </form>
+    </main>
+    <script type="module" src="js/ui.js"></script>
+  </body>
+</html>
