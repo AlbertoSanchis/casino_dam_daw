@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAYOR o MENOR</title>
+  </head>
+  <body>
+    <h1>DADOS</h1>
+    <br /><br />
+
+    <button onclick="jugar()" id="botonJugar">JUGAR</button>
+
+    <p>Dado en mesa:</p>
+    <p id="dado1">?</p>
+    <!-- falta javascript del boton-->
+    <div id="botonesDados">
+      <button onclick="adivinar('mayor')" id="botonMayor">MAYOR</button>
+      <button onclick="adivinar('menor')" id="botonMenor">MENOR</button> al css a este
+      boton margin left para espacio horizontal
+    </div>
+    <p>Tu dado:</p>
+    <p id="dado2">?</p>
+
+    <p id="mensaje"></p>
+
+    <button onclick="reiniciar()" id="botonReiniciar">Jugar de nuevo</button>
+
+    <script src="Dados.js"></script>
+  </body>
+</html>
