@@ -1,0 +1,194 @@
+/* Reinicio de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Página */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: #ffffff;
+}
+
+/* Panel principal */
+.juego {
+    width: 90%;
+    max-width: 500px;
+    padding: 35px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Título */
+.juego h1 {
+    font-size: 36px;
+    text-align: center;
+    color: #facc15;
+    text-transform: uppercase;
+}
+
+/* Zona de la moneda */
+.moneda {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #facc15, #ca8a04);
+    border: 8px solid #fde68a;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Resultado de la moneda */
+#resultadoMoneda {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    color: #1e293b;
+}
+
+/* Zona de selección */
+.seleccion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.seleccion p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Botones de elección */
+.seleccion button {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #334155;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.seleccion button:hover {
+    background-color: #475569;
+    transform: translateY(-2px);
+}
+
+.seleccion button:active {
+    transform: translateY(0);
+}
+
+/* Cantidad de apuesta */
+.seleccion label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.seleccion input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+
+    border: 2px solid #475569;
+    border-radius: 10px;
+
+    background-color: #0f172a;
+    color: #ffffff;
+
+    font-size: 16px;
+    text-align: center;
+
+    outline: none;
+}
+
+.seleccion input:focus {
+    border-color: #facc15;
+}
+
+/* Botón jugar */
+#jugar {
+    width: 100%;
+    max-width: 300px;
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #facc15;
+    color: #1e293b;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#jugar:hover {
+    background-color: #fde047;
+    transform: translateY(-2px);
+}
+
+#jugar:active {
+    transform: translateY(0);
+}
+
+/* Resultado de la partida */
+.resultado {
+    width: 100%;
+    min-height: 30px;
+    text-align: center;
+}
+
+#resultadoPartida {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Adaptación para móviles */
+@media (max-width: 500px) {
+
+    .juego {
+        padding: 25px 20px;
+    }
+
+    .juego h1 {
+        font-size: 28px;
+    }
+
+    .moneda {
+        width: 150px;
+        height: 150px;
+    }
+
+}
