@@ -1,0 +1,50 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background: #eeeeee;
+        }
+
+        main {
+            width: min(100% - 32px, 400px);
+            text-align: center;
+        }
+
+        .dinero {
+            margin: 24px 0;
+            font-size: 20px;
+        }
+
+        .casillas {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            
+        }
+
+        .casilla {
+            display: grid;
+            place-items: center;
+            width: 90px;
+            height: 100px;
+            background: #ffffff;
+            font-size: 48px;
+            font-weight: bold;
+            border-radius:20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            border: 0;
+            background: #0b0b0b;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius:20px;
+        }

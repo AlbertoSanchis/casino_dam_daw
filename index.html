@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Tragaperras</title> 
+    <link rel="stylesheet" href="CSS\estilos.css"> 
+</head> 
+<body> 
+
+    <main> 
+
+        <h1>Gambling</h1> 
+
+        <p class="dinero">Dinero: <strong id="dinero" aria-live="polite">1000 euros</strong></p>
+
+        <div class="casillas" aria-label="Resultados de la tirada"> 
+
+            <div class="casilla" id="casilla-1">1</div>
+
+            <div class="casilla" id="casilla-2">1</div>
+
+            <div class="casilla" id="casilla-3">1</div>
+
+        </div> 
+
+        <button id="spin" type="button">Gamblea</button>
+
+    </main>
+
+    <script>
+
+        let Dinero = 100;
+
+        const slots = [ 
+
+            document.getElementById("casilla-1"),
+
+            document.getElementById("casilla-2"),
+
+            document.getElementById("casilla-3")
+
+        ];
+
+        const Mostrar_Dinero = document.getElementById("dinero");
+
+        const boton = document.getElementById("spin");
+
+        const actualizar_Dinero = () => {
+
+            Mostrar_Dinero.textContent = `${Dinero} euros`;
+
+        };
+
+        actualizar_Dinero();
+
+        boton.addEventListener("click", () => {
+
+            if (Dinero < 10) {
+
+                return;
+
+            }
+
+            Dinero -= 10;
+
+            const numeros = slots.map(() => Math.floor(Math.random() * 7) + 1);
+
+            numeros.forEach((numero, resultado) => {
+
+                slots[resultado].textContent = numero;
+
+            });
+
+            if (numeros.every((numero) => numero === numeros[0])) {
+
+                Dinero += numeros[0] * 100;
+
+            }
+
+            actualizar_Dinero();
+
+        });
+
+    </script> 
+
+</body> 
+
+</html> 
