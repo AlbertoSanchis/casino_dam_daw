@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruleta Europea</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #0b5d2a; color: white; }
+    #tablero { display: grid; grid-template-columns: repeat(12, 50px); gap: 4px; justify-content: center; margin: 20px auto; }
+    .numero { padding: 12px 0; border-radius: 4px; font-weight: bold; }
+    .rojo  { background: #c0392b; }
+    .negro { background: #222; }
+    .verde { background: #27ae60; grid-column: span 12; }
+    .ganador { outline: 4px solid gold; }
+    button, input { padding: 10px 16px; font-size: 16px; margin: 5px; }
+    #resultado { font-size: 22px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Ruleta Europea</h1>
+
+  <!-- TABLERO: cada número tiene id y data-numero / data-color -->
+  <div id="tablero">
+    <div class="numero verde" id="num-0"  data-numero="0"  data-color="verde">0</div>
+
+    <div class="numero rojo"  id="num-1"  data-numero="1"  data-color="rojo">1</div>
+    <div class="numero negro" id="num-2"  data-numero="2"  data-color="negro">2</div>
+    <div class="numero rojo"  id="num-3"  data-numero="3"  data-color="rojo">3</div>
+    <div class="numero negro" id="num-4"  data-numero="4"  data-color="negro">4</div>
+    <div class="numero rojo"  id="num-5"  data-numero="5"  data-color="rojo">5</div>
+    <div class="numero negro" id="num-6"  data-numero="6"  data-color="negro">6</div>
+    <div class="numero rojo"  id="num-7"  data-numero="7"  data-color="rojo">7</div>
+    <div class="numero negro" id="num-8"  data-numero="8"  data-color="negro">8</div>
+    <div class="numero rojo"  id="num-9"  data-numero="9"  data-color="rojo">9</div>
+    <div class="numero negro" id="num-10" data-numero="10" data-color="negro">10</div>
+    <div class="numero negro" id="num-11" data-numero="11" data-color="negro">11</div>
+    <div class="numero rojo"  id="num-12" data-numero="12" data-color="rojo">12</div>
+
+    <div class="numero negro" id="num-13" data-numero="13" data-color="negro">13</div>
+    <div class="numero rojo"  id="num-14" data-numero="14" data-color="rojo">14</div>
+    <div class="numero negro" id="num-15" data-numero="15" data-color="negro">15</div>
+    <div class="numero rojo"  id="num-16" data-numero="16" data-color="rojo">16</div>
+    <div class="numero negro" id="num-17" data-numero="17" data-color="negro">17</div>
+    <div class="numero rojo"  id="num-18" data-numero="18" data-color="rojo">18</div>
+    <div class="numero rojo"  id="num-19" data-numero="19" data-color="rojo">19</div>
+    <div class="numero negro" id="num-20" data-numero="20" data-color="negro">20</div>
+    <div class="numero rojo"  id="num-21" data-numero="21" data-color="rojo">21</div>
+    <div class="numero negro" id="num-22" data-numero="22" data-color="negro">22</div>
+    <div class="numero rojo"  id="num-23" data-numero="23" data-color="rojo">23</div>
+    <div class="numero negro" id="num-24" data-numero="24" data-color="negro">24</div>
+
+    <div class="numero rojo"  id="num-25" data-numero="25" data-color="rojo">25</div>
+    <div class="numero negro" id="num-26" data-numero="26" data-color="negro">26</div>
+    <div class="numero rojo"  id="num-27" data-numero="27" data-color="rojo">27</div>
+    <div class="numero negro" id="num-28" data-numero="28" data-color="negro">28</div>
+    <div class="numero negro" id="num-29" data-numero="29" data-color="negro">29</div>
+    <div class="numero rojo"  id="num-30" data-numero="30" data-color="rojo">30</div>
+    <div class="numero negro" id="num-31" data-numero="31" data-color="negro">31</div>
+    <div class="numero rojo"  id="num-32" data-numero="32" data-color="rojo">32</div>
+    <div class="numero negro" id="num-33" data-numero="33" data-color="negro">33</div>
+    <div class="numero rojo"  id="num-34" data-numero="34" data-color="rojo">34</div>
+    <div class="numero negro" id="num-35" data-numero="35" data-color="negro">35</div>
+    <div class="numero rojo"  id="num-36" data-numero="36" data-color="rojo">36</div>
+  </div>
+
+  <!-- JUGAR POR COLOR -->
+  <h2>Jugar por color</h2>
+  <button id="btnVerde" onclick="jugarColor('verde')">Verde</button>
+  <button id="btnRojo"  onclick="jugarColor('rojo')">Rojo</button>
+  <button id="btnNegro" onclick="jugarColor('negro')">Negro</button>
+
+  <!-- JUGAR POR NÚMERO -->
+  <h2>Jugar por número</h2>
+  <input type="number" id="inputNumero" min="0" max="36" placeholder="0 - 36">
+  <button id="btnNumero" onclick="jugarNumero()">Apostar</button>
+
+  <div id="resultado"></div>
+
+  <script src="ruleta.js"></script>
+</body>
+</html>
