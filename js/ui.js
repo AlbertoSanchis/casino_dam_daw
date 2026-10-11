@@ -6,9 +6,10 @@ import {
   actualizarSueldo,
   mostrarResultadoPartida,
   apuestaCantidadvalida,
-  checkerNoVacio,
-  tipo,
   darBalance,
+  mostrarTipoElegido,
+  mostrarElegirNumero,
+  validarNumero,
 } from "./game.js";
 
 document.getElementById("sueldo").textContent += state.sueldo;
@@ -22,15 +23,20 @@ document.getElementById("allIn").addEventListener("click", (e) => {
   document.getElementById("contenedorApostado").style.display = "block";
   document.getElementById("h2contenedorApostado").textContent =
     "Cantidad Apostada: " + state.apuesta;
+  document.getElementById("typoElegir").style.display = "block";
 });
 
 // Apuestas
 document.getElementById("apostar").addEventListener("click", (e) => {
   e.preventDefault();
   state.apuesta = Number(document.getElementById("apuesta").value);
-  if (apuestaCantidadvalida(state.sueldo, state.apuesta)) {
+  if (
+    apuestaCantidadvalida(state.sueldo, state.apuesta) &&
+    validarNumero(state.apuesta)
+  ) {
     document.getElementById("sueldo").textContent = "Balance:" + state.sueldo;
     document.getElementById("contenedorApuesta").style.display = "none";
+    document.getElementById("typoElegir").style.display = "block";
   } else {
     state.apuesta = 0;
     alert("Jugando Sin Balance");
@@ -41,11 +47,12 @@ document.getElementById("apostar").addEventListener("click", (e) => {
 document.getElementById("enviarTipo").addEventListener("click", (e) => {
   e.preventDefault();
   state.valorSelecionado = document.getElementById("tipo").value;
-  tipo(state.valorSelecionado);
+  mostrarTipoElegido(state.valorSelecionado);
+  mostrarElegirNumero();
 });
 
 // Juego Empezar
-document.getElementById("JuegoEmpezar").addEventListener("click", (e) => {
+document.getElementById("formJuego").addEventListener("submit", (e) => {
   e.preventDefault();
   document.getElementById("formJuego").style.display = "none";
   state.numeroUsuario = Number(document.getElementById("numeroElegido").value);

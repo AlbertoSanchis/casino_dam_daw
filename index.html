@@ -23,38 +23,44 @@
           <h2 id="h2contenedorApostado">Cantidad Apostada:</h2>
         </div>
       </form>
-      <section id="juego">
-        <div id="typoElegir">
-          <h2>Elige</h2>
-          <form action="">
-            <select name="" id="tipo">
-              <option value="pares">Pares</option>
-              <option value="nones">Nones</option>
-            </select>
-            <input type="submit" name="" id="enviarTipo" />
+      <div id="typoElegir">
+        <h2>Elige</h2>
+        <form action="">
+          <select name="" id="tipo">
+            <option value="pares">Pares</option>
+            <option value="nones">Nones</option>
+          </select>
+          <input type="submit" name="" id="enviarTipo" />
+        </form>
+      </div>
+      <div id="typoElegido" style="display: none">
+        <h2 id="h2TypoElegido">Typo Elegido:</h2>
+        <div id="elegirNumero" style="display: none">
+          <h2>Introduce numero del 0 al 5</h2>
+          <form id="formJuego">
+            <input
+              type="number"
+              value=""
+              min="0"
+              max="5"
+              id="numeroElegido"
+              required
+            />
+            <input type="submit" id="JuegoEmpezar" value="Empezar Juego" />
           </form>
         </div>
-        <div id="typoElegido" style="display: none">
-          <h2 id="h2TypoElegido">Typo Elegido:</h2>
-        </div>
-        <h2>Introduce numero del 0 al 5</h2>
-        <form id="formJuego">
-          <input type="number" value="" min="0" max="5" id="numeroElegido" />
-          <input type="submit" id="JuegoEmpezar" value="Empezar Juego" />
-        </form>
         <article>
           <h3 id="resultado">Resultado</h3>
           <p id="tuNumero">Tu Numero:</p>
           <p id="numeroMaquina">Numero Casino:</p>
         </article>
         <button id="jugarNuevo">Jugar de Nuevo</button>
-      </section>
-      <button>Salir</button>
       <form action="">
         <label for="">Añadir Mandanga</label>
         <input type="number" id="inputBalance" />
         <button id="DarBalance">Let it RIDE</button>
       </form>
+      <button>Salir</button>
     </main>
     <script type="module" src="js/ui.js"></script>
   </body>

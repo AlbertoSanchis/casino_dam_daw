@@ -65,16 +65,26 @@ export function checkerNoVacio(elemento) {
   }
 }
 
-export function tipo(tipo) {
+export function mostrarTipoElegido(tipo) {
   document.getElementById("typoElegir").style.display = "none";
   document.getElementById("typoElegido").style.display = "block";
   document.getElementById("h2TypoElegido").innerHTML += tipo;
 }
 
+export function mostrarElegirNumero() {
+  document.getElementById("elegirNumero").style.display = "block";
+}
+
+export function validarNumero(numero) {
+  if (numero >= 0) {
+    return true;
+  }
+}
+
 export function darBalance() {
   localStorage.setItem(
     "sueldo",
-    Number(document.getElementById("inputBalance").value),
+    Number(document.getElementById("inputBalance").value) + state.sueldo,
   );
   location.reload();
 }
