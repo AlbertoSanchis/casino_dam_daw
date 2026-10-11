@@ -1,0 +1,163 @@
+:root { /* Define valores globales reutilizables y preferencias para toda la página. */
+    color-scheme: light; /* Indica que la interfaz está diseñada para un esquema de color claro. */
+    --ink: #183b36; /* Define el color principal del texto. */
+    --muted: #647873; /* Define un color de texto secundario y menos destacado. */
+    --paper: #fffefa; /* Define el color claro de la tarjeta principal. */
+    --leaf: #cbe85b; /* Define el verde claro usado como color de énfasis. */
+    --leaf-deep: #9fc62c; /* Define un verde más oscuro para bordes y detalles. */
+    --coral: #ed6954; /* Define un tono coral disponible como color de énfasis. */
+    --line: #dce7d9; /* Define el color de bordes y separadores. */
+    --shadow: 0 24px 70px rgba(27, 63, 51, 0.13); /* Define la sombra suave de la tarjeta. */
+} /* Finaliza las variables y preferencias globales. */
+
+* { /* Selecciona todos los elementos de la página. */
+    box-sizing: border-box; /* Incluye bordes y relleno en el ancho y alto calculados. */
+} /* Finaliza la regla global de tamaño de caja. */
+
+body { /* Aplica el diseño general al cuerpo de la página. */
+    min-height: 100vh; /* Hace que el cuerpo ocupe como mínimo toda la altura de la ventana. */
+    margin: 0; /* Elimina el margen predeterminado del navegador. */
+    padding: 64px 20px; /* Añade espacio interior vertical y horizontal alrededor del contenido. */
+    display: flex; /* Usa Flexbox para organizar el contenido del cuerpo. */
+    flex-direction: column; /* Coloca los elementos hijos uno debajo del otro. */
+    align-items: center; /* Centra horizontalmente los elementos hijos. */
+    justify-content: center; /* Centra verticalmente los elementos hijos. */
+    color: var(--ink); /* Aplica el color de texto global principal. */
+    background-color: #edf4e8; /* Establece un fondo verde muy claro. */
+    background-image: repeating-linear-gradient( /* Crea un patrón repetido de franjas diagonales muy sutiles. */
+        135deg, /* Orienta diagonalmente las franjas del patrón. */
+        transparent 0, /* Mantiene transparente el inicio de cada repetición. */
+        transparent 36px, /* Conserva transparente el fondo durante los primeros 36 píxeles. */
+        rgba(73, 119, 75, 0.045) 37px, /* Inicia la franja con un verde de transparencia baja. */
+        rgba(73, 119, 75, 0.045) 38px /* Termina la franja un píxel después para que sea fina. */
+    ); /* Finaliza el degradado repetido que forma el patrón de fondo. */
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif; /* Define la tipografía general y sus alternativas. */
+} /* Finaliza el estilo general del cuerpo. */
+
+h1 { /* Estiliza el encabezado principal. */
+    max-width: 620px; /* Limita el ancho para evitar títulos excesivamente largos. */
+    margin: 0 0 28px; /* Quita los márgenes superior y laterales y separa el título de la tarjeta. */
+    color: var(--ink); /* Aplica el color principal del texto. */
+    font-family: Georgia, "Times New Roman", serif; /* Usa una tipografía con remates para el título. */
+    font-size: clamp(2rem, 8vw, 4rem); /* Ajusta el tamaño al ancho de pantalla, con límites mínimo y máximo. */
+    font-weight: 700; /* Muestra el título en negrita. */
+    line-height: 1; /* Reduce el espacio vertical entre líneas del título. */
+    text-align: center; /* Centra el texto del título. */
+} /* Finaliza el estilo del encabezado principal. */
+
+h1 b { /* Selecciona el texto en negrita que está dentro del título. */
+    font-weight: inherit; /* Hace que el texto herede el grosor definido por el título. */
+} /* Finaliza el estilo del texto en negrita del título. */
+
+main { /* Da formato de tarjeta al contenido principal del juego. */
+    width: min(100%, 540px); /* Ocupa el ancho disponible hasta un máximo de 540 píxeles. */
+    padding: 34px; /* Separa el contenido de los bordes de la tarjeta. */
+    border: 1px solid rgba(255, 255, 255, 0.8); /* Añade un borde blanco ligeramente transparente. */
+    border-radius: 18px; /* Redondea las esquinas de la tarjeta. */
+    background: var(--paper); /* Aplica el color claro global de la tarjeta. */
+    box-shadow: var(--shadow); /* Añade la sombra global para dar profundidad. */
+} /* Finaliza el estilo de la tarjeta principal. */
+
+fieldset { /* Organiza en una fila los controles del formulario. */
+    display: flex; /* Usa Flexbox para distribuir la lista y el botón. */
+    gap: 12px; /* Deja espacio entre los controles. */
+    min-width: 0; /* Permite que el grupo se encoja dentro de contenedores estrechos. */
+    margin: 0; /* Elimina el margen predeterminado del grupo. */
+    padding: 0; /* Elimina el relleno predeterminado del grupo. */
+    border: 0; /* Quita el borde predeterminado del grupo. */
+} /* Finaliza la disposición del grupo de controles. */
+
+select, /* Selecciona la lista de jugadas. */
+button { /* Selecciona el botón para compartir estilos básicos entre ambos controles. */
+    min-height: 54px; /* Da a los controles una altura mínima cómoda para pulsar. */
+    border: 1px solid var(--line); /* Aplica el color global de borde. */
+    border-radius: 9px; /* Redondea las esquinas de los controles. */
+    font: inherit; /* Hereda la familia y el grosor tipográfico del elemento contenedor. */
+    font-size: 1rem; /* Establece un tamaño de texto equivalente al tamaño base. */
+} /* Finaliza los estilos comunes de la lista y el botón. */
+
+select { /* Estiliza la lista desplegable de jugadas. */
+    flex: 1; /* Permite que la lista ocupe el espacio disponible de la fila. */
+    min-width: 0; /* Permite que la lista reduzca su ancho si es necesario. */
+    padding: 0 42px 0 16px; /* Añade espacio interior, reservando más espacio a la derecha. */
+    color: var(--ink); /* Aplica el color principal del texto. */
+    background-color: #f8faf4; /* Da a la lista un fondo ligeramente distinto de la tarjeta. */
+    cursor: pointer; /* Indica visualmente que la lista es interactiva. */
+} /* Finaliza el estilo de la lista desplegable. */
+
+select:focus-visible, /* Selecciona la lista cuando recibe el foco mediante teclado. */
+button:focus-visible { /* Selecciona el botón cuando recibe el foco mediante teclado. */
+    outline: 3px solid rgba(159, 198, 44, 0.55); /* Dibuja un contorno visible para señalar el foco. */
+    outline-offset: 3px; /* Separa el contorno del borde del control. */
+} /* Finaliza el indicador de foco accesible. */
+
+button { /* Aplica el estilo visual específico al botón de juego. */
+    padding: 0 24px; /* Añade espacio horizontal dentro del botón. */
+    border-color: var(--leaf-deep); /* Usa el verde oscuro en el borde. */
+    color: #23340d; /* Establece un color oscuro para el texto del botón. */
+    background: var(--leaf); /* Aplica el verde claro de énfasis como fondo. */
+    font-weight: 800; /* Resalta el texto del botón con un grosor alto. */
+    cursor: pointer; /* Indica que el botón se puede pulsar. */
+    transition: transform 140ms ease, background-color 140ms ease; /* Anima suavemente el movimiento y el cambio de fondo. */
+} /* Finaliza el estilo base del botón. */
+
+button:hover { /* Aplica efectos cuando el puntero está sobre el botón. */
+    transform: translateY(-2px); /* Eleva el botón dos píxeles para dar respuesta visual. */
+    background: #d8f27a; /* Aclara el fondo del botón durante el desplazamiento. */
+} /* Finaliza el efecto al pasar el puntero. */
+
+button:active { /* Aplica un efecto mientras se mantiene pulsado el botón. */
+    transform: translateY(0); /* Devuelve el botón a su posición original al pulsarlo. */
+} /* Finaliza el efecto de pulsación. */
+
+main > p { /* Estiliza los párrafos que son hijos directos del contenido principal. */
+    margin: 24px 0 0; /* Separa cada párrafo del contenido anterior y quita márgenes laterales e inferior. */
+    padding: 18px 0 0; /* Añade espacio entre el borde separador y el texto. */
+    border-top: 1px solid var(--line); /* Separa visualmente cada resultado con una línea superior. */
+    color: var(--muted); /* Usa el color secundario para las etiquetas de resultado. */
+    font-size: 0.9rem; /* Reduce ligeramente el tamaño del texto descriptivo. */
+    font-weight: 700; /* Resalta las etiquetas con negrita. */
+    text-transform: uppercase; /* Muestra en mayúsculas las etiquetas de los párrafos. */
+} /* Finaliza el estilo de las etiquetas de información. */
+
+main > p span { /* Estiliza los espacios donde JavaScript inserta jugada y resultado. */
+    display: block; /* Coloca cada valor en una línea nueva. */
+    min-height: 34px; /* Reserva espacio aunque el valor todavía no se haya mostrado. */
+    margin-top: 8px; /* Separa el valor del texto descriptivo anterior. */
+    color: var(--ink); /* Usa el color principal para destacar el valor. */
+    font-family: Georgia, "Times New Roman", serif; /* Da al valor una tipografía con remates. */
+    font-size: 1.7rem; /* Aumenta el tamaño para destacar la jugada o el resultado. */
+    font-weight: 700; /* Muestra el valor en negrita. */
+    text-transform: none; /* Evita que el texto insertado se convierta a mayúsculas. */
+} /* Finaliza el estilo de los valores dinámicos. */
+
+#resultado:not(:empty) { /* Selecciona el resultado solo cuando contiene texto. */
+    color: #c64e3b; /* Resalta el resultado con un tono coral oscuro. */
+} /* Finaliza el estilo del resultado no vacío. */
+
+@media (max-width: 440px) { /* Adapta el diseño a pantallas de hasta 440 píxeles de ancho. */
+    body { /* Ajusta el espacio exterior del cuerpo en pantallas estrechas. */
+        padding: 36px 16px; /* Reduce los rellenos para aprovechar mejor el espacio móvil. */
+    } /* Finaliza el ajuste del cuerpo para móviles. */
+
+    main { /* Ajusta el espacio interior de la tarjeta en pantallas estrechas. */
+        padding: 24px 20px; /* Reduce el relleno de la tarjeta para dar más espacio al contenido. */
+    } /* Finaliza el ajuste de la tarjeta para móviles. */
+
+    fieldset { /* Cambia la distribución de los controles en pantallas estrechas. */
+        flex-direction: column; /* Coloca la lista y el botón uno debajo del otro. */
+    } /* Finaliza el ajuste del grupo de controles para móviles. */
+
+    button { /* Ajusta el ancho del botón en pantallas estrechas. */
+        width: 100%; /* Hace que el botón ocupe todo el ancho disponible. */
+    } /* Finaliza el ajuste del botón para móviles. */
+} /* Finaliza las reglas para pantallas estrechas. */
+
+@media (prefers-reduced-motion: reduce) { /* Respeta la preferencia del usuario por reducir animaciones. */
+    *, /* Selecciona todos los elementos. */
+    *::before, /* Incluye los pseudoelementos ::before. */
+    *::after { /* Incluye los pseudoelementos ::after. */
+        scroll-behavior: auto !important; /* Evita desplazamientos animados para reducir el movimiento. */
+        transition-duration: 0.01ms !important; /* Reduce prácticamente a cero la duración de las transiciones. */
+    } /* Finaliza el ajuste de movimiento reducido para elementos y pseudoelementos. */
+} /* Finaliza las reglas para usuarios que prefieren menos movimiento. */

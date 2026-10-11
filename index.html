@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="estilos.css">
+    <script src="JavaScript.js" defer></script> <!-- Carga JavaScript.js y lo ejecuta después de analizar el HTML. -->
+    <title>Document</title> 
+</head> 
+
+<body> 
+
+    <head> 
+        <h1><b>PIEDRA, PAPEL O TIJERA</b></h1> <!-- Muestra el título principal del juego. -->
+    </head> 
+    <main> 
+        <form id="formulario"> <!-- Crea el formulario que JavaScript escucha al jugar. -->
+            <fieldset> <!-- Agrupa visualmente los controles relacionados del formulario. -->
+                <select name="opciones" required> <!-- Permite elegir una jugada y exige una selección válida. -->
+                    <option value="" disabled selected>Elige una opción</option> <!-- Muestra una opción inicial que no se puede enviar como jugada. -->
+                    <option value="piedra">piedra</option> <!-- Añade piedra como una de las jugadas disponibles. -->
+                    <option value="papel">papel</option> <!-- Añade papel como una de las jugadas disponibles. -->
+                    <option value="tijera">tijera</option> <!-- Añade tijera como una de las jugadas disponibles. -->
+                </select> 
+                <button type="submit">jugar</button> <!-- Envía el formulario para iniciar una partida. -->
+            </fieldset> 
+        </form> 
+
+           
+        <p> El crupier ha eligido: <span id="crupier"></span> </p>  <!-- El span identifica dentro del texto el lugar donde JavaScript insertará la jugada del crupier. -->
+        <p>El resultado es: <span id="resultado"></span></p> <!-- Muestra el resultado que JavaScript escriba en el elemento resultado. -->
+        </form> 
+
+    </main> 
+</body>
+
+</html> 
