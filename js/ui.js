@@ -11,6 +11,7 @@ import {
   mostrarElegirNumero,
   validarNumero,
   apuestasUi,
+  numeroJugadaValido,
 } from "./game.js";
 
 document.getElementById("sueldo").textContent += state.sueldo;
@@ -48,10 +49,14 @@ document.getElementById("enviarTipo").addEventListener("click", (e) => {
 // Juego Empezar
 document.getElementById("formJuego").addEventListener("submit", (e) => {
   e.preventDefault();
+  const numeroRevisar = Number(document.getElementById("numeroElegido").value);
+  if (!numeroJugadaValido(numeroRevisar)) {
+    alert("Introduce Un Numero Entero Del 0 al 5");
+    return;
+  }
   document.getElementById("formJuego").style.display = "none";
-  state.numeroUsuario = Number(document.getElementById("numeroElegido").value);
+  state.numeroUsuario = numeroRevisar;
   state.numeroMaquina = randomNumero();
-
   const total = sumarNumero(state.numeroUsuario, state.numeroMaquina);
   const ganador = resultadoPartida(state.valorSelecionado, total);
   actualizarSueldo(ganador);

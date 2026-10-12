@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +10,12 @@
     <header>
       <h1>Pares O Nones</h1>
       <h2 id="sueldo">Balance:</h2>
-      <h2 id="apostado" style="display: none"></h2>
     </header>
     <main>
       <form id="Apuestas">
         <div id="contenedorApuesta">
           <label for="">Cantidad a apostar</label>
-          <input type="number" name="" id="apuesta" />
+          <input type="number" id="apuesta" />
           <button id="allIn" type="button">ALL IN LET IT RIDE</button>
           <input type="submit" id="apostar" value="apostar" />
         </div>
@@ -24,14 +23,14 @@
           <h2 id="h2contenedorApostado">Cantidad Apostada:</h2>
         </div>
       </form>
-      <div id="typoElegir">
+      <div id="typoElegir" style="display: none">
         <h2>Elige</h2>
         <form action="">
-          <select name="" id="tipo">
+          <select id="tipo">
             <option value="Pares">Pares</option>
             <option value="Nones">Nones</option>
           </select>
-          <input type="submit" name="" id="enviarTipo" />
+          <input type="submit" id="enviarTipo" />
         </form>
       </div>
       <div id="typoElegido" style="display: none">
