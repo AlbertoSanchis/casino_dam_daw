@@ -1,0 +1,92 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  color: #fff;
+  background: #11131c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #292e40, #11131c 72%);
+}
+
+.tragaperras {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+h1 {
+  margin: 0;
+  color: #f5bd4f;
+  letter-spacing: 0.08em;
+}
+
+.rodillos {
+  display: flex;
+  gap: clamp(0.5rem, 3vw, 1rem);
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 3px solid #f5bd4f;
+  border-radius: 1rem;
+  background: #1b1d27;
+  box-shadow: 0 0 30px #f5bd4f33, inset 0 0 18px #0008;
+}
+
+.slot {
+  width: clamp(4.5rem, 19vw, 7rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid #dddfe7;
+  border-radius: 0.65rem;
+  background: linear-gradient(#fff, #e8e9ee);
+  color: #171923;
+  font-size: clamp(2.5rem, 11vw, 4rem);
+  line-height: 1;
+}
+
+#girar {
+  min-width: 10rem;
+  padding: 0.9rem 2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #f5bd4f;
+  color: #20170a;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #b77818, 0 8px 20px #0006;
+}
+
+#girar:hover {
+  background: #ffd273;
+}
+
+#girar:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #b77818, 0 5px 14px #0006;
+}
+
+#girar:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+#mensaje {
+  min-height: 1.5em;
+  margin: 0;
+  color: #f5bd4f;
+  font-weight: 700;
+  text-align: center;
+}
