@@ -106,3 +106,16 @@ export function apuestasUi() {
   document.getElementById("typoElegir").style.display = "block";
   document.getElementById("mandanga").style.display = "none";
 }
+
+// Un número de jugada es válido si es entero y está entre 0 y 5
+export function numeroJugadaValido(numero) {
+  return EsEntero(numero) && entreCeroCinco(numero);
+}
+
+export function EsEntero(numero) {
+  return Number.isInteger(numero);
+}
+
+export function entreCeroCinco(numero) {
+  return numero >= 0 && numero <= 5;
+}
