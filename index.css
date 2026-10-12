@@ -1,0 +1,493 @@
+/* ─────────────────────────────────────────────
+   IMPORT FONTS
+───────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap');
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
+:root {
+  --bg:          #0d0f14;
+  --surface:     #161a24;
+  --surface-2:   #1e2435;
+  --border:      #2a3048;
+  --accent:      #e8b44d;
+  --accent-dim:  #b8882a;
+  --danger:      #e05252;
+  --success:     #4bbe8a;
+  --text:        #eef0f6;
+  --text-muted:  #7a85a3;
+  --radius:      12px;
+  --shadow:      0 4px 24px rgba(0,0,0,.55);
+  --transition:  0.18s ease;
+}
+
+/* ─────────────────────────────────────────────
+   RESET / BASE
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─────────────────────────────────────────────
+   HEADER
+───────────────────────────────────────────── */
+header {
+  width: 100%;
+  max-width: 560px;
+  padding: 28px 28px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header h1::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/dice-5.svg') center / contain no-repeat;
+  filter: invert(78%) sepia(44%) saturate(700%) hue-rotate(5deg) brightness(1.1);
+  flex-shrink: 0;
+}
+
+#sueldo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#sueldo::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/wallet.svg') center / contain no-repeat;
+  filter: invert(55%) sepia(10%) saturate(500%) hue-rotate(195deg) brightness(1);
+  flex-shrink: 0;
+}
+
+#apostado {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ─────────────────────────────────────────────
+   MAIN
+───────────────────────────────────────────── */
+main {
+  width: 100%;
+  max-width: 560px;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─────────────────────────────────────────────
+   CARD WRAPPERS
+───────────────────────────────────────────── */
+#Apuestas,
+#typoElegido {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+#typoElegir {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+───────────────────────────────────────────── */
+h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+/* ─────────────────────────────────────────────
+   INPUTS & SELECT
+───────────────────────────────────────────── */
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  margin-bottom: 14px;
+  appearance: none;
+}
+
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232,180,77,0.18);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { appearance: none; }
+
+select {
+  background-image: url('https://unpkg.com/lucide-static@latest/icons/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  /* filter only applied to the element itself via -webkit-filter workaround not needed;
+     the SVG chevron is black by default so we invert it for the dark bg */
+  filter: invert(0.6);
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS — BASE
+───────────────────────────────────────────── */
+button,
+input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+button:hover,
+input[type="submit"]:hover { opacity: 0.85; transform: translateY(-1px); }
+
+button:active,
+input[type="submit"]:active { transform: translateY(0); opacity: 1; }
+
+/* ─────────────────────────────────────────────
+   SPECIFIC BUTTONS
+───────────────────────────────────────────── */
+#apostar {
+  width: 100%;
+  background-color: var(--accent);
+  color: #0d0f14;
+  margin-top: 4px;
+}
+
+#allIn {
+  width: 100%;
+  background-color: var(--danger);
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+#allIn::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/flame.svg') center / contain no-repeat;
+  filter: invert(1);
+  flex-shrink: 0;
+}
+
+#enviarTipo {
+  width: 100%;
+  background-color: var(--accent);
+  color: #0d0f14;
+}
+
+#JuegoEmpezar {
+  width: 100%;
+  background-color: var(--accent);
+  color: #0d0f14;
+}
+
+#jugarNuevo {
+  width: 100%;
+  background-color: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  margin-top: 16px;
+}
+
+#jugarNuevo::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/refresh-cw.svg') center / contain no-repeat;
+  filter: invert(0.8);
+  flex-shrink: 0;
+}
+
+#DarBalance {
+  width: 100%;
+  background-color: var(--success);
+  color: #0d0f14;
+  margin-top: 4px;
+}
+
+#DarBalance::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/plus-circle.svg') center / contain no-repeat;
+  filter: brightness(0.3);
+  flex-shrink: 0;
+}
+
+/* Salir — direct child of main, no id */
+main > button:not(#jugarNuevo) {
+  align-self: center;
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 10px 28px;
+  font-size: 0.85rem;
+}
+
+main > button:not(#jugarNuevo):hover {
+  color: var(--danger);
+  border-color: var(--danger);
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
+   BET CONFIRMATION
+───────────────────────────────────────────── */
+#contenedorApostado {
+  padding: 14px;
+  background-color: var(--surface-2);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+#contenedorApostado h2 {
+  margin-bottom: 0;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+/* ─────────────────────────────────────────────
+   CHOOSE SECTION
+───────────────────────────────────────────── */
+#typoElegir h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+#typoElegir h2::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/help-circle.svg') center / contain no-repeat;
+  filter: invert(78%) sepia(44%) saturate(700%) hue-rotate(5deg) brightness(1.1);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────
+   RESULT SECTION
+───────────────────────────────────────────── */
+#typoElegido h2 {
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#typoElegido h2::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/target.svg') center / contain no-repeat;
+  filter: invert(78%) sepia(44%) saturate(700%) hue-rotate(5deg) brightness(1.1);
+  flex-shrink: 0;
+}
+
+#elegirNumero {
+  background-color: var(--surface-2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+#elegirNumero h2 {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+div#resultado {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+h3#resultado {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#tuNumero,
+#numeroMaquina {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background-color: var(--surface);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+#tuNumero::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/user.svg') center / contain no-repeat;
+  filter: invert(0.7);
+  flex-shrink: 0;
+}
+
+#numeroMaquina::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/cpu.svg') center / contain no-repeat;
+  filter: invert(0.7);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────
+   ADD BALANCE SECTION
+   Note: this form is inside #typoElegido (bad HTML nesting),
+   NOT a direct child of main. Target by its unique child #inputBalance.
+───────────────────────────────────────────── */
+#inputBalance {
+  margin-top: 8px;
+}
+
+/* Style the balance form — it is a direct child of main (HTML nesting issue),
+   NOT inside #typoElegido as it appears. Target it correctly. */
+main > form:not(#Apuestas) {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 0;
+}
+
+main > form:not(#Apuestas) label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+main > form:not(#Apuestas) label::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://unpkg.com/lucide-static@latest/icons/piggy-bank.svg') center / contain no-repeat;
+  filter: invert(0.6);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  header { padding: 20px 16px 16px; }
+  main   { padding: 16px 12px 40px; }
+}

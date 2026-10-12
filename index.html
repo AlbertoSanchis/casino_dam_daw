@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pares O Nones</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <header>
@@ -16,7 +17,7 @@
         <div id="contenedorApuesta">
           <label for="">Cantidad a apostar</label>
           <input type="number" name="" id="apuesta" />
-          <button id="allIn">ALL IN LET IT RIDE</button>
+          <button id="allIn" type="button">ALL IN LET IT RIDE</button>
           <input type="submit" id="apostar" value="apostar" />
         </div>
         <div id="contenedorApostado" style="display: none">
@@ -27,8 +28,8 @@
         <h2>Elige</h2>
         <form action="">
           <select name="" id="tipo">
-            <option value="pares">Pares</option>
-            <option value="nones">Nones</option>
+            <option value="Pares">Pares</option>
+            <option value="Nones">Nones</option>
           </select>
           <input type="submit" name="" id="enviarTipo" />
         </form>
@@ -49,13 +50,14 @@
             <input type="submit" id="JuegoEmpezar" value="Empezar Juego" />
           </form>
         </div>
-        <article>
-          <h3 id="resultado">Resultado</h3>
-          <p id="tuNumero">Tu Numero:</p>
-          <p id="numeroMaquina">Numero Casino:</p>
-        </article>
-        <button id="jugarNuevo">Jugar de Nuevo</button>
-      <form action="">
+      </div>
+      <div id="resultado" style="display: none">
+        <h3 id="resultadoh3">Resultado</h3>
+        <p id="tuNumero">Tu Numero:</p>
+        <p id="numeroMaquina">Numero Casino:</p>
+      </div>
+      <button id="jugarNuevo" style="display: none">Jugar de Nuevo</button>
+      <form action="" id="mandanga">
         <label for="">Añadir Mandanga</label>
         <input type="number" id="inputBalance" />
         <button id="DarBalance">Let it RIDE</button>

@@ -13,3 +13,8 @@ export const WinOption = Object.freeze({
   USUWIN: "USUWIN",
   CASWIN: "CASWIN",
 });
+
+export const TypeOptions = Object.freeze({
+  PARES: "Pares",
+  NONES: "Nones",
+});

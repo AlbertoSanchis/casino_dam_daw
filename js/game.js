@@ -1,8 +1,8 @@
-import { state, WinOption } from "./state.js";
+import { state, WinOption, TypeOptions } from "./state.js";
 
 // Sumador de los numeros
-export function sumarNumero() {
-  return Number(state.numeroUsuario) + Number(state.numeroMaquina);
+export function sumarNumero(numero1, numero2) {
+  return Number(numero1) + Number(numero2);
 }
 
 // Calculador de Numero Random
@@ -12,7 +12,7 @@ export function randomNumero() {
 
 // Ver si la suma de los numeros es par o inpar
 export function comprobadorParONon(total) {
-  return total % 2 === 0 ? "pares" : "nones";
+  return total % 2 === 0 ? TypeOptions.PARES : TypeOptions.NONES;
 }
 // Nos devuelve el enum que necesitamos que es si ha ganado el usuario o casino y se utiliza para actualizar el sueldo del usuario
 export function resultadoPartida(valorSelecionado, total) {
@@ -26,11 +26,11 @@ export function resultadoPartida(valorSelecionado, total) {
 export function mostrarResultadoPartida(ganador) {
   switch (ganador) {
     case WinOption.CASWIN:
-      document.getElementById("resultado").innerHTML =
+      document.getElementById("resultadoh3").innerHTML =
         "Resultado: Casino ha Ganado";
       break;
     case WinOption.USUWIN:
-      document.getElementById("resultado").innerHTML =
+      document.getElementById("resultadoh3").innerHTML =
         "Resultado: Usuario ha Ganado";
       break;
     default:
@@ -44,7 +44,7 @@ export function mostrarResultadoPartida(ganador) {
 // Actualiza el sueldo del jugador si gana
 export function actualizarSueldo(winner) {
   if (winner === WinOption.USUWIN) {
-    state.sueldo = state.sueldo + state.apuesta * 2;
+    state.sueldo += state.apuesta;
     localStorage.setItem("sueldo", state.sueldo);
   }
   if (winner === WinOption.CASWIN) {
@@ -54,7 +54,7 @@ export function actualizarSueldo(winner) {
 }
 
 export function apuestaCantidadvalida(sueldo, apuesta) {
-  return state.sueldo - state.apuesta >= 0;
+  return sueldo - apuesta >= 0;
 }
 
 export function checkerNoVacio(elemento) {
@@ -76,7 +76,7 @@ export function mostrarElegirNumero() {
 }
 
 export function validarNumero(numero) {
-  if (numero >= 0) {
+  if (numero > 0) {
     return true;
   }
 }
@@ -87,4 +87,14 @@ export function darBalance() {
     Number(document.getElementById("inputBalance").value) + state.sueldo,
   );
   location.reload();
+}
+
+export function apuestasUi() {
+  document.getElementById("sueldo").textContent = "Balance:" + state.sueldo;
+  document.getElementById("contenedorApuesta").style.display = "none";
+  document.getElementById("contenedorApostado").style.display = "block";
+  document.getElementById("h2contenedorApostado").textContent =
+    "Cantidad Apostada: " + state.apuesta;
+  document.getElementById("typoElegir").style.display = "block";
+  document.getElementById("mandanga").style.display = "none";
 }

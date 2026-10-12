@@ -10,6 +10,7 @@ import {
   mostrarTipoElegido,
   mostrarElegirNumero,
   validarNumero,
+  apuestasUi,
 } from "./game.js";
 
 document.getElementById("sueldo").textContent += state.sueldo;
@@ -18,12 +19,7 @@ document.getElementById("sueldo").textContent += state.sueldo;
 document.getElementById("allIn").addEventListener("click", (e) => {
   e.preventDefault();
   state.apuesta = state.sueldo;
-  document.getElementById("sueldo").textContent = "Balance:" + state.sueldo;
-  document.getElementById("contenedorApuesta").style.display = "none";
-  document.getElementById("contenedorApostado").style.display = "block";
-  document.getElementById("h2contenedorApostado").textContent =
-    "Cantidad Apostada: " + state.apuesta;
-  document.getElementById("typoElegir").style.display = "block";
+  apuestasUi();
 });
 
 // Apuestas
@@ -34,9 +30,7 @@ document.getElementById("apostar").addEventListener("click", (e) => {
     apuestaCantidadvalida(state.sueldo, state.apuesta) &&
     validarNumero(state.apuesta)
   ) {
-    document.getElementById("sueldo").textContent = "Balance:" + state.sueldo;
-    document.getElementById("contenedorApuesta").style.display = "none";
-    document.getElementById("typoElegir").style.display = "block";
+    apuestasUi();
   } else {
     state.apuesta = 0;
     alert("Jugando Sin Balance");
@@ -58,13 +52,14 @@ document.getElementById("formJuego").addEventListener("submit", (e) => {
   state.numeroUsuario = Number(document.getElementById("numeroElegido").value);
   state.numeroMaquina = randomNumero();
 
-  const total = sumarNumero(state.numeroUsuario + state.numeroMaquina);
+  const total = sumarNumero(state.numeroUsuario, state.numeroMaquina);
   const ganador = resultadoPartida(state.valorSelecionado, total);
   actualizarSueldo(ganador);
 
-  document.getElementById("sueldo").textContent =
-    "Balance Disponible: " + state.sueldo;
+  document.getElementById("sueldo").textContent = "Balance: " + state.sueldo;
   mostrarResultadoPartida(ganador);
+  document.getElementById("resultado").style.display = "block";
+  document.getElementById("jugarNuevo").style.display = "block";
 });
 
 // Reiniciar Juego
