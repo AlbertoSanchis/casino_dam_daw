@@ -1,51 +1,76 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Indica al navegador que este documento utiliza HTML5. -->
+<html lang="es"> <!-- Inicia el documento HTML e indica que el idioma es español. -->
 
-<head>
-    <meta charset="UTF-8">
-    <title>Cara o Cruz</title>
-    <link rel="stylesheet" href="css/Cara-Cruz.css">
-</head>
+<head> <!-- Empieza la sección de configuración de la página. -->
+    <meta charset="UTF-8"> <!-- Permite mostrar correctamente tildes, eñes y otros caracteres. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adapta la página al ancho de móviles y otros dispositivos. -->
+    <title>Cara o Cruz</title> <!-- Establece el título que aparece en la pestaña del navegador. -->
 
-<body>
+    <link rel="stylesheet" href="Cara-Cruz.css"> <!-- Conecta este HTML con el archivo CSS que define su apariencia. -->
+</head> <!-- Termina la sección de configuración. -->
 
-    <div class="juego">
+<body> <!-- Empieza el contenido visible de la página. -->
 
-        <h1>Cara o Cruz</h1>
+    <div class="juego"> <!-- Crea el panel principal que contiene todo el juego. -->
 
-        <div class="moneda">
+        <h1>Cara o Cruz</h1> <!-- Muestra el título principal del juego. -->
 
-            <p id="resultadoMoneda"></p>
+        <div class="configuracionSaldo"> <!-- Agrupa los elementos para establecer el saldo inicial. -->
 
-        </div>
+            <label for="saldoInicial">Saldo inicial (€):</label> <!-- Indica al usuario qué cantidad debe introducir. -->
 
+            <input
+                type="number"
+                id="saldoInicial"
+                min="1"
+                step="1"
+                value="100"> <!-- Permite escribir el saldo inicial; comienza mostrando 100 euros y sugiere números enteros positivos. -->
 
-        <div class="seleccion">
+            <button type="button" id="confirmarSaldo">Confirmar saldo</button> <!-- Crea el botón que aplicará el nuevo saldo. -->
 
-            <p>Elige una opción:</p>
+        </div> <!-- Termina la sección para configurar el saldo. -->
 
-            <button id="cara">Cara</button>
-            <button id="cruz">Cruz</button>
-            <button id="canto">Canto</button>
+        <p id="saldo">Saldo: 100 €</p> <!-- Muestra el saldo actual del jugador; JavaScript actualizará este texto. -->
 
-            <label for="apuesta">Cantidad a apostar:</label>
+        <div class="moneda"> <!-- Crea el espacio circular que representa la moneda. -->
 
-            <input type="number" id="apuesta" min="1" step="1">
+            <p id="resultadoMoneda">Elige tu apuesta</p> <!-- Muestra el mensaje inicial y después el resultado de la moneda. -->
 
-        </div>
+        </div> <!-- Termina el espacio de la moneda. -->
 
-        <button id="jugar">Jugar</button>
+        <div class="seleccion"> <!-- Agrupa las opciones que puede elegir el jugador. -->
 
-        <div class="resultado">
+            <p>Elige una opción:</p> <!-- Indica que el jugador debe seleccionar un resultado. -->
 
-            <p id="resultadoMoneda"></p>
+            <button type="button" id="cara">Cara</button> <!-- Crea el botón para elegir Cara. -->
 
-            <p id="resultadoPartida"></p>
+            <button type="button" id="cruz">Cruz</button> <!-- Crea el botón para elegir Cruz. -->
 
-        </div>
+            <button type="button" id="canto">Canto</button> <!-- Crea el botón para elegir Canto. -->
 
-    </div>
-    <script src="js/cara-cruz.js"></script>
-</body>
+            <label for="apuesta">Cantidad a apostar:</label> <!-- Explica qué cantidad debe introducirse en el campo siguiente. -->
 
-</html>
+            <input
+                type="number"
+                id="apuesta"
+                min="1"
+                step="1"
+                placeholder="Introduce tu apuesta"> <!-- Permite introducir la cantidad que se quiere apostar. -->
+
+        </div> <!-- Termina el grupo de opciones y apuesta. -->
+
+        <button type="button" id="jugar">Jugar</button> <!-- Crea el botón que inicia una partida. -->
+
+        <div class="resultado"> <!-- Reserva un espacio para los mensajes de la partida. -->
+
+            <p id="resultadoPartida"></p> <!-- Muestra avisos, ganancias o pérdidas. -->
+
+        </div> <!-- Termina el espacio de resultados. -->
+
+    </div> <!-- Termina el panel principal del juego. -->
+
+    <script src="Cara-Cruz.js"></script> <!-- Carga el JavaScript que controla las elecciones, las apuestas y el saldo. -->
+
+</body> <!-- Termina el contenido visible de la página. -->
+
+</html> <!-- Termina el documento HTML. -->

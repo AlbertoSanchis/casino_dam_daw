@@ -1,194 +1,372 @@
-/* Reinicio de estilos */
+/* Reinicio los márgenes y espacios predeterminados del navegador. */
 * {
     margin: 0;
+    /* Elimina los márgenes exteriores predeterminados. */
     padding: 0;
+    /* Elimina los espacios interiores predeterminados. */
     box-sizing: border-box;
+    /* Incluye el relleno y los bordes dentro del tamaño definido de cada elemento. */
 }
 
-/* Página */
+/* Defino el aspecto general de la página. */
 body {
     min-height: 100vh;
+    /* Hace que la página tenga como mínimo la altura de la ventana. */
     font-family: Arial, sans-serif;
+    /* Establece la tipografía del texto. */
     display: flex;
+    /* Activa Flexbox para organizar los elementos del cuerpo. */
     justify-content: center;
+    /* Centra horizontalmente el panel principal. */
     align-items: center;
+    /* Centra verticalmente el panel principal. */
     background: linear-gradient(135deg, #111827, #1f2937);
+    /* Crea un fondo degradado oscuro. */
     color: #ffffff;
+    /* Establece el color de texto predeterminado en blanco. */
 }
 
-/* Panel principal */
+/* Diseño del panel que contiene el juego. */
 .juego {
     width: 90%;
+    /* Ocupa el 90 % del ancho disponible. */
     max-width: 500px;
+    /* Impide que el panel supere los 500 píxeles de ancho. */
     padding: 35px;
+    /* Añade espacio interior alrededor del contenido. */
     background-color: #1e293b;
+    /* Establece el color de fondo del panel. */
     border: 1px solid #334155;
+    /* Añade un borde fino al panel. */
     border-radius: 20px;
+    /* Redondea las esquinas del panel. */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
-
+    /* Añade una sombra exterior. */
     display: flex;
+    /* Organiza los elementos del panel con Flexbox. */
     flex-direction: column;
+    /* Coloca los elementos uno debajo del otro. */
     align-items: center;
+    /* Centra horizontalmente los elementos del panel. */
     gap: 25px;
+    /* Deja 25 píxeles de separación entre los elementos. */
 }
 
-/* Título */
+/* Estilo del título. */
 .juego h1 {
     font-size: 36px;
+    /* Establece el tamaño del título. */
     text-align: center;
+    /* Centra el texto del título. */
     color: #facc15;
+    /* Pinta el título de amarillo. */
     text-transform: uppercase;
+    /* Muestra el título en mayúsculas. */
 }
 
-/* Zona de la moneda */
+/* Organizo los elementos para configurar el saldo inicial. */
+.configuracionSaldo {
+    width: 100%;
+    /* Ocupa todo el ancho interior disponible del panel. */
+    display: flex;
+    /* Activa Flexbox para organizar sus elementos. */
+    flex-direction: column;
+    /* Coloca la etiqueta, el campo y el botón en vertical. */
+    align-items: center;
+    /* Centra los elementos horizontalmente. */
+    gap: 10px;
+    /* Deja espacio entre cada elemento. */
+}
+
+/* Estilo de la etiqueta del saldo inicial. */
+.configuracionSaldo label {
+    font-weight: bold;
+    /* Muestra la etiqueta en negrita. */
+}
+
+/* Estilo del campo donde se introduce el saldo inicial. */
+.configuracionSaldo input {
+    width: 100%;
+    /* Ocupa todo el ancho disponible hasta el límite siguiente. */
+    max-width: 300px;
+    /* Limita el ancho máximo del campo. */
+    padding: 12px;
+    /* Añade espacio interior al campo. */
+    border: 2px solid #475569;
+    /* Dibuja un borde alrededor del campo. */
+    border-radius: 10px;
+    /* Redondea las esquinas del campo. */
+    background-color: #0f172a;
+    /* Establece un fondo oscuro. */
+    color: #ffffff;
+    /* Muestra el número en blanco. */
+    font-size: 16px;
+    /* Establece el tamaño del número. */
+    text-align: center;
+    /* Centra el número introducido. */
+}
+
+/* Estilo del botón para confirmar el saldo. */
+.configuracionSaldo button {
+    width: 100%;
+    /* Ocupa el ancho disponible hasta el límite siguiente. */
+    max-width: 300px;
+    /* Limita el ancho máximo del botón. */
+    padding: 12px;
+    /* Añade espacio interior al botón. */
+    border: none;
+    /* Elimina el borde predeterminado. */
+    border-radius: 10px;
+    /* Redondea las esquinas. */
+    background-color: #475569;
+    /* Establece el fondo gris azulado. */
+    color: #ffffff;
+    /* Muestra el texto en blanco. */
+    font-weight: bold;
+    /* Muestra el texto en negrita. */
+    cursor: pointer;
+    /* Cambia el cursor para indicar que se puede pulsar. */
+}
+
+/* Cambia el color del botón de saldo al pasar el ratón. */
+.configuracionSaldo button:hover {
+    background-color: #64748b;
+    /* Aclara el fondo al pasar el ratón. */
+}
+
+/* Estilo del saldo actual. */
+#saldo {
+    font-size: 22px;
+    /* Aumenta el tamaño del texto del saldo. */
+    font-weight: bold;
+    /* Muestra el saldo en negrita. */
+    color: #4ade80;
+    /* Pinta el saldo de verde. */
+    text-align: center;
+    /* Centra el texto del saldo. */
+}
+
+/* Apariencia de la moneda. */
 .moneda {
     width: 180px;
+    /* Establece el ancho de la moneda. */
     height: 180px;
+    /* Establece la altura de la moneda. */
     border-radius: 50%;
+    /* Convierte el contenedor en un círculo. */
     background: linear-gradient(145deg, #facc15, #ca8a04);
+    /* Crea un degradado dorado. */
     border: 8px solid #fde68a;
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.4),
-        inset 0 0 20px rgba(255, 255, 255, 0.25);
-
+    /* Añade un borde dorado claro. */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.25);
+    /* Añade sombra exterior e iluminación interior. */
     display: flex;
+    /* Permite centrar el texto de la moneda. */
     justify-content: center;
+    /* Centra horizontalmente el texto. */
     align-items: center;
+    /* Centra verticalmente el texto. */
+    padding: 15px;
+    /* Evita que el texto quede pegado al borde. */
 }
 
-/* Resultado de la moneda */
+/* Estilo del texto que aparece dentro de la moneda. */
 #resultadoMoneda {
-    font-size: 22px;
+    font-size: 20px;
+    /* Define el tamaño del texto. */
     font-weight: bold;
+    /* Muestra el texto en negrita. */
     text-align: center;
+    /* Centra el texto. */
     color: #1e293b;
+    /* Pinta el texto de oscuro para que contraste con el dorado. */
+    overflow-wrap: anywhere;
+    /* Permite partir palabras largas si es necesario. */
 }
 
-/* Zona de selección */
+/* Organizo la zona de selección. */
 .seleccion {
     width: 100%;
+    /* Ocupa el ancho disponible del panel. */
     display: flex;
+    /* Activa Flexbox. */
     flex-direction: column;
+    /* Coloca las opciones en vertical. */
     align-items: center;
+    /* Centra las opciones horizontalmente. */
     gap: 12px;
+    /* Separa los elementos entre sí. */
 }
 
+/* Estilo del texto que pide elegir una opción. */
 .seleccion p {
     font-size: 18px;
+    /* Establece el tamaño del texto. */
     font-weight: bold;
+    /* Muestra el texto en negrita. */
 }
 
-/* Botones de elección */
+/* Estilo común para los botones Cara, Cruz y Canto. */
 .seleccion button {
     width: 100%;
+    /* Ocupa el ancho disponible hasta el límite siguiente. */
     max-width: 300px;
+    /* Limita el ancho máximo del botón. */
     padding: 12px 20px;
-
-    border: none;
+    /* Añade espacio interior vertical y horizontal. */
+    border: 2px solid transparent;
+    /* Reserva un borde sin mostrar color inicialmente. */
     border-radius: 10px;
-
+    /* Redondea las esquinas. */
     background-color: #334155;
+    /* Establece el fondo gris azulado. */
     color: #ffffff;
-
+    /* Muestra el texto en blanco. */
     font-size: 16px;
+    /* Define el tamaño de la letra. */
     font-weight: bold;
-
+    /* Muestra el texto en negrita. */
     cursor: pointer;
-
-    transition: 0.2s ease;
+    /* Indica que el botón es interactivo. */
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    /* Suaviza los cambios de color y tamaño. */
 }
 
+/* Efecto al pasar el ratón por las opciones. */
 .seleccion button:hover {
     background-color: #475569;
+    /* Aclara el fondo del botón. */
     transform: translateY(-2px);
+    /* Desplaza el botón ligeramente hacia arriba. */
 }
 
-.seleccion button:active {
-    transform: translateY(0);
+/* Apariencia de la opción elegida. */
+.seleccion button.seleccionada,
+.seleccion button.seleccionada:hover {
+    background-color: #facc15;
+    /* Pinta de amarillo la opción seleccionada. */
+    color: #1e293b;
+    /* Cambia el texto a oscuro. */
+    border: 2px solid #ffffff;
+    /* Añade un borde blanco. */
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+    /* Añade un resplandor amarillo. */
+    transform: scale(1.03);
+    /* Aumenta ligeramente el tamaño del botón. */
 }
 
-/* Cantidad de apuesta */
+/* Estilo de la etiqueta de la apuesta. */
 .seleccion label {
     margin-top: 10px;
+    /* Separa la etiqueta del botón anterior. */
     font-weight: bold;
+    /* Muestra la etiqueta en negrita. */
 }
 
+/* Estilo del campo donde se introduce la apuesta. */
 .seleccion input {
     width: 100%;
+    /* Ocupa el ancho disponible hasta el límite siguiente. */
     max-width: 300px;
+    /* Limita el ancho del campo. */
     padding: 12px;
-
+    /* Añade espacio interior. */
     border: 2px solid #475569;
+    /* Dibuja el borde. */
     border-radius: 10px;
-
+    /* Redondea las esquinas. */
     background-color: #0f172a;
+    /* Establece un fondo oscuro. */
     color: #ffffff;
-
+    /* Muestra el número en blanco. */
     font-size: 16px;
+    /* Define el tamaño del número. */
     text-align: center;
-
+    /* Centra el número. */
     outline: none;
+    /* Elimina el contorno predeterminado del navegador. */
 }
 
+/* Cambia el borde cuando el campo de apuesta está seleccionado. */
 .seleccion input:focus {
     border-color: #facc15;
+    /* Resalta el borde en amarillo. */
 }
 
-/* Botón jugar */
+/* Estilo del botón Jugar. */
 #jugar {
     width: 100%;
+    /* Ocupa el ancho disponible hasta el límite siguiente. */
     max-width: 300px;
+    /* Limita el ancho del botón. */
     padding: 14px;
-
+    /* Añade espacio interior. */
     border: none;
+    /* Elimina el borde predeterminado. */
     border-radius: 10px;
-
+    /* Redondea las esquinas. */
     background-color: #facc15;
+    /* Pinta el botón de amarillo. */
     color: #1e293b;
-
+    /* Pinta el texto de oscuro. */
     font-size: 18px;
+    /* Aumenta el tamaño de la letra. */
     font-weight: bold;
-
+    /* Muestra el texto en negrita. */
     cursor: pointer;
-
-    transition: 0.2s ease;
+    /* Indica que se puede pulsar. */
 }
 
-#jugar:hover {
+/* Efecto del botón Jugar cuando está habilitado. */
+#jugar:hover:not(:disabled) {
     background-color: #fde047;
-    transform: translateY(-2px);
+    /* Aclara el amarillo al pasar el ratón. */
 }
 
-#jugar:active {
-    transform: translateY(0);
+/* Apariencia de Jugar cuando está desactivado. */
+#jugar:disabled {
+    background-color: #64748b;
+    /* Cambia el fondo a gris. */
+    color: #cbd5e1;
+    /* Aclara el texto. */
+    cursor: not-allowed;
+    /* Indica que no se puede pulsar. */
 }
 
-/* Resultado de la partida */
+/* Espacio para los mensajes de resultado. */
 .resultado {
     width: 100%;
+    /* Ocupa el ancho disponible. */
     min-height: 30px;
+    /* Reserva una altura mínima para el mensaje. */
     text-align: center;
+    /* Centra el texto del resultado. */
 }
 
+/* Estilo de los mensajes de resultado. */
 #resultadoPartida {
     font-size: 20px;
+    /* Define el tamaño del mensaje. */
     font-weight: bold;
+    /* Muestra el mensaje en negrita. */
 }
 
-/* Adaptación para móviles */
+/* Adapto el diseño a pantallas pequeñas. */
 @media (max-width: 500px) {
-
     .juego {
         padding: 25px 20px;
+        /* Reduce el espacio interior del panel en móviles. */
     }
 
     .juego h1 {
         font-size: 28px;
+        /* Reduce el tamaño del título. */
     }
 
     .moneda {
         width: 150px;
+        /* Reduce el ancho de la moneda. */
         height: 150px;
+        /* Reduce la altura de la moneda. */
     }
-
 }
