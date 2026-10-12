@@ -53,10 +53,12 @@ export function actualizarSueldo(winner) {
   }
 }
 
+// No permite que la apuesta sea mayor al sueldo disponible
 export function apuestaCantidadvalida(sueldo, apuesta) {
   return sueldo - apuesta >= 0;
 }
 
+// Actualmente no se utiliza pero se va a implementar más tarde
 export function checkerNoVacio(elemento) {
   if (elemento !== "") {
     return true;
@@ -65,6 +67,7 @@ export function checkerNoVacio(elemento) {
   }
 }
 
+// Utilizada Para Mostrar Que ha elegido el usuario si pares o nones
 export function mostrarTipoElegido(tipo) {
   document.getElementById("typoElegir").style.display = "none";
   document.getElementById("typoElegido").style.display = "block";
@@ -75,18 +78,23 @@ export function mostrarElegirNumero() {
   document.getElementById("elegirNumero").style.display = "block";
 }
 
+// Este validador lo utlizamos para que los número que se introduzcan no puedan ser negativos
 export function validarNumero(numero) {
   if (numero > 0) {
     return true;
+  } else {
+    return false;
   }
 }
 
 export function darBalance() {
-  localStorage.setItem(
-    "sueldo",
-    Number(document.getElementById("inputBalance").value) + state.sueldo,
-  );
-  location.reload();
+  const balanceSumar = Number(document.getElementById("inputBalance").value);
+  if (Number.isFinite(balanceSumar) && balanceSumar > 0) {
+    localStorage.setItem("sueldo", balanceSumar + state.sueldo);
+    location.reload();
+  } else {
+    alert("Error al intentar añadir balance");
+  }
 }
 
 export function apuestasUi() {
